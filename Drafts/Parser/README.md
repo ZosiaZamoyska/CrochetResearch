@@ -29,6 +29,11 @@ To parse a file, I run:
 tree-sitter parse example-file
 ```
 
+To generate a JSON file with all nodes and their metadata, run:
+```
+node index.js
+```
+
 # Example
 
 For an example-file of:
@@ -37,7 +42,7 @@ ch ch ch ch
 sc @ [0, 1]
 ```
 
-The result returned is:
+The result returned by a parser is:
 ```
 (source_file [0, 0] - [2, 0]
   (stitch [0, 0] - [0, 2])
@@ -50,3 +55,48 @@ The result returned is:
 
 ```
 
+The result returned by index.js is:
+```
+[
+  {
+    type: 'stitch',
+    stitchType: 'ch',
+    row: 1,
+    column: 1,
+    index: 0,
+    coordinates: null
+  },
+  {
+    type: 'stitch',
+    stitchType: 'ch',
+    row: 1,
+    column: 2,
+    index: 1,
+    coordinates: null
+  },
+  {
+    type: 'stitch',
+    stitchType: 'ch',
+    row: 1,
+    column: 3,
+    index: 2,
+    coordinates: null
+  },
+  {
+    type: 'stitch',
+    stitchType: 'ch',
+    row: 1,
+    column: 4,
+    index: 3,
+    coordinates: null
+  },
+  {
+    type: 'stitch',
+    stitchType: 'sc',
+    row: 2,
+    column: 1,
+    index: 4,
+    coordinates: { x: 0, y: 1 }
+  }
+]
+```
