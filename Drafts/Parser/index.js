@@ -1,0 +1,79 @@
+const Parser = require('tree-sitter');
+const Crochet = require('./build/Release/tree_sitter_CrochetLan_binding.node'); // Adjust path as needed
+
+const parser = new Parser();
+parser.setLanguage(Crochet);
+
+const sourceCode = `
+ch ch ch ch
+sc @ [1, 4] sc @ [1, 4] sc sc 
+sc sc sc sc
+hdc hdc @ [2, 1] dc
+`;
+
+const tree = parser.parse(sourceCode);
+
+function assignIndices(node) {
+  let stitchIndex = 0;
+  let stitches = [];
+  let row_count = new Map();
+
+  const walk = (node) => {
+    if (node.type === 'stitch') {
+      const startPosition = node.startPosition;
+      let column_count = 1;
+
+      // Handle row and column counting
+      if (row_count.has(startPosition.row)) {  
+        column_count = row_count.get(startPosition.row) + 1;
+        row_count.set(startPosition.row, column_count);
+      } else {
+        row_count.set(startPosition.row, column_count);
+      }
+
+      const stitchType = node.firstChild.text;
+
+      let coordinates = null;
+      if (node.children.length > 2) { 
+        const atSymbol = node.children.find(child => child.text === '@');
+        if (atSymbol) {
+          const coordStart = node.children.find(child => child.text === '[');
+          const coordEnd = node.children.find(child => child.text === ']');
+          
+          if (coordStart && coordEnd) {
+            const coordText = node.children.slice(
+              node.children.indexOf(coordStart) + 1,
+              node.children.indexOf(coordEnd)
+            ).map(child => child.text);
+            
+            coordinates = {
+              x: parseInt(coordText[0], 10),
+              y: parseInt(coordText[2], 10)
+            };
+          }
+        }
+      }
+
+      stitches.push({
+        type: node.type,
+        stitchType,
+        row: startPosition.row,
+        column: column_count,
+        index: stitchIndex++,
+        coordinates 
+      });
+    }
+
+    for (let child of node.children) {
+      walk(child);
+    }
+  };
+
+  walk(node);
+  return stitches;
+}
+
+
+const indexedStitches = assignIndices(tree.rootNode);
+
+console.log(indexedStitches);
