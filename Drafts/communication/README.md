@@ -22,3 +22,15 @@ py detection.py
 ```
 node parser_server.js
 ```
+
+## Method 2
+
+* Run bash script (run.sh)
+```
+./run.sh
+```
+
+That runs both detection and parser codes. Almost same as method 1.
+
+![Bash](fig1.PNG)
+
