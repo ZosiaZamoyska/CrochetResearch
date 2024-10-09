@@ -14,7 +14,7 @@ def read_from_file():
                 detect_movement(line)
         time.sleep(0.1)
     '''
-    
+
 def detect_movement(gyro_data):
     #print(f"Analyzing: {gyro_data}")
     movement_type = "ch" 
@@ -29,4 +29,4 @@ def send_to_parser(movement_type):
         print(f"WebSocket error: {e}")
 
 if __name__ == "__main__":
-    read_from_arduino()
+    read_from_file()
