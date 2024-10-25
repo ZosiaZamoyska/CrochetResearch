@@ -14,3 +14,6 @@ We collect dat for each of designated crochet stitch types:
 * __double crochet  (dc)__: yarn over, insert hook, yarn over, pull through, yarn over, pull through two, yarn over, pull through two
 * __treble crochet (tr)__: yarn over twice, insert hook, yarn over, pull through, yarn over, pull through two, yarn over, pull through two, yarn over, pull through two
 
+# Edge Impulse
+
+I use edgeimpulse.com to build my model - it's convinient. I followed all the instructions from their platform. 

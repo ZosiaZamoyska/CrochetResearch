@@ -35,16 +35,16 @@
 #include <stdint.h>
 #include "model_metadata.h"
 
-#include "tflite-model/tflite_learn_5_compiled.h"
+#include "tflite-model/tflite_learn_14_compiled.h"
 #include "edge-impulse-sdk/classifier/ei_model_types.h"
 #include "edge-impulse-sdk/classifier/inferencing_engines/engines.h"
 
 const char* ei_classifier_inferencing_categories[] = { "ch", "dc", "sc" };
 
-uint8_t ei_dsp_config_9_axes[] = { 0, 1, 2 };
-const uint32_t ei_dsp_config_9_axes_size = 3;
-ei_dsp_config_spectral_analysis_t ei_dsp_config_9 = {
-    9, // uint32_t blockId
+uint8_t ei_dsp_config_13_axes[] = { 0, 1, 2 };
+const uint32_t ei_dsp_config_13_axes_size = 3;
+ei_dsp_config_spectral_analysis_t ei_dsp_config_13 = {
+    13, // uint32_t blockId
     4, // int implementationVersion
     3, // int length of axes
     1.0f, // float scale-axes
@@ -64,54 +64,32 @@ ei_dsp_config_spectral_analysis_t ei_dsp_config_9 = {
     false // boolean extra-low-freq
 };
 
-
-uint8_t ei_dsp_config_10_axes[] = { 0, 1, 2 };
-const uint32_t ei_dsp_config_10_axes_size = 3;
-ei_dsp_config_imu_syntiant_t ei_dsp_config_10 = {
-    10, // uint32_t blockId
-    1, // int implementationVersion
-    3, // int length of axes
-    true, // boolean scaling
-    false, // boolean scaling_raw
-    true // boolean padding
-};
-
-const uint8_t ei_dsp_blocks_size = 2;
+const uint8_t ei_dsp_blocks_size = 1;
 ei_model_dsp_t ei_dsp_blocks[ei_dsp_blocks_size] = {
-    { // DSP block 9
-        9,
+    { // DSP block 13
+        13,
         39, // output size
         &extract_spectral_analysis_features, // DSP function pointer
-        (void*)&ei_dsp_config_9, // pointer to config struct
-        ei_dsp_config_9_axes, // array of offsets into the input stream, one for each axis
-        ei_dsp_config_9_axes_size, // number of axes
-        1, // version
-        nullptr, // factory function
-    },
-    { // DSP block 10
-        10,
-        304, // output size
-        &extract_imu_syntiant_features, // DSP function pointer
-        (void*)&ei_dsp_config_10, // pointer to config struct
-        ei_dsp_config_10_axes, // array of offsets into the input stream, one for each axis
-        ei_dsp_config_10_axes_size, // number of axes
+        (void*)&ei_dsp_config_13, // pointer to config struct
+        ei_dsp_config_13_axes, // array of offsets into the input stream, one for each axis
+        ei_dsp_config_13_axes_size, // number of axes
         1, // version
         nullptr, // factory function
     }
 };
-const ei_config_tflite_eon_graph_t ei_config_tflite_graph_5 = {
+const ei_config_tflite_eon_graph_t ei_config_tflite_graph_14 = {
     .implementation_version = 1,
-    .model_init = &tflite_learn_5_init,
-    .model_invoke = &tflite_learn_5_invoke,
-    .model_reset = &tflite_learn_5_reset,
-    .model_input = &tflite_learn_5_input,
-    .model_output = &tflite_learn_5_output,
+    .model_init = &tflite_learn_14_init,
+    .model_invoke = &tflite_learn_14_invoke,
+    .model_reset = &tflite_learn_14_reset,
+    .model_input = &tflite_learn_14_input,
+    .model_output = &tflite_learn_14_output,
 };
 
-const ei_learning_block_config_tflite_graph_t ei_learning_block_config_5 = {
+const ei_learning_block_config_tflite_graph_t ei_learning_block_config_14 = {
     .implementation_version = 1,
     .classification_mode = EI_CLASSIFIER_CLASSIFICATION_MODE_CLASSIFICATION,
-    .block_id = 5,
+    .block_id = 14,
     .object_detection = 0,
     .object_detection_last_layer = EI_CLASSIFIER_LAST_LAYER_UNKNOWN,
     .output_data_tensor = 0,
@@ -120,21 +98,21 @@ const ei_learning_block_config_tflite_graph_t ei_learning_block_config_5 = {
     .threshold = 0,
     .quantized = 1,
     .compiled = 1,
-    .graph_config = (void*)&ei_config_tflite_graph_5
+    .graph_config = (void*)&ei_config_tflite_graph_14
 };
 
 const uint8_t ei_learning_blocks_size = 1;
-const uint32_t ei_learning_block_5_inputs[1] = { 9 };
-const uint8_t ei_learning_block_5_inputs_size = 1;
+const uint32_t ei_learning_block_14_inputs[1] = { 13 };
+const uint8_t ei_learning_block_14_inputs_size = 1;
 const ei_learning_block_t ei_learning_blocks[ei_learning_blocks_size] = {
     {
-        5,
+        14,
         false,
         &run_nn_inference,
-        (void*)&ei_learning_block_config_5,
+        (void*)&ei_learning_block_config_14,
         EI_CLASSIFIER_IMAGE_SCALING_NONE,
-        ei_learning_block_5_inputs,
-        ei_learning_block_5_inputs_size,
+        ei_learning_block_14_inputs,
+        ei_learning_block_14_inputs_size,
         3
     },
 };
@@ -149,19 +127,19 @@ const ei_impulse_t impulse_532080_0 = {
     .project_id = 532080,
     .project_owner = "Zofia Marciniak",
     .project_name = "ZosiaZamoyska-project-1",
-    .impulse_id = 1,
-    .impulse_name = "Impulse #1",
-    .deploy_version = 3,
+    .impulse_id = 3,
+    .impulse_name = "Impulse #3",
+    .deploy_version = 5,
 
     .nn_input_frame_size = 39,
-    .raw_sample_count = 100,
+    .raw_sample_count = 10,
     .raw_samples_per_frame = 3,
-    .dsp_input_frame_size = 100 * 3,
+    .dsp_input_frame_size = 10 * 3,
     .input_width = 0,
     .input_height = 0,
     .input_frames = 0,
-    .interval_ms = 10,
-    .frequency = 100,
+    .interval_ms = 100,
+    .frequency = 10,
     .dsp_blocks_size = ei_dsp_blocks_size,
     .dsp_blocks = ei_dsp_blocks,
     
@@ -181,9 +159,9 @@ const ei_impulse_t impulse_532080_0 = {
 
     .inferencing_engine = EI_CLASSIFIER_TFLITE,
 
-    .sensor = EI_CLASSIFIER_SENSOR_FUSION,
+    .sensor = EI_CLASSIFIER_SENSOR_MICROPHONE,
     .fusion_string = "yaw + pitch + roll",
-    .slice_size = (100/4),
+    .slice_size = (10/4),
     .slices_per_model_window = 4,
 
     .has_anomaly = EI_ANOMALY_TYPE_UNKNOWN,
