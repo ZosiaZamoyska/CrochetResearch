@@ -129,7 +129,7 @@ const ei_impulse_t impulse_532080_0 = {
     .project_name = "ZosiaZamoyska-project-1",
     .impulse_id = 3,
     .impulse_name = "Impulse #3",
-    .deploy_version = 5,
+    .deploy_version = 7,
 
     .nn_input_frame_size = 39,
     .raw_sample_count = 10,

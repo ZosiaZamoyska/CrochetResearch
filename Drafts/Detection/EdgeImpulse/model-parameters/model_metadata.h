@@ -73,7 +73,7 @@
 #define EI_CLASSIFIER_PROJECT_ID                 532080
 #define EI_CLASSIFIER_PROJECT_OWNER              "Zofia Marciniak"
 #define EI_CLASSIFIER_PROJECT_NAME               "ZosiaZamoyska-project-1"
-#define EI_CLASSIFIER_PROJECT_DEPLOY_VERSION     5
+#define EI_CLASSIFIER_PROJECT_DEPLOY_VERSION     7
 #define EI_CLASSIFIER_NN_INPUT_FRAME_SIZE        39
 #define EI_CLASSIFIER_RAW_SAMPLE_COUNT           10
 #define EI_CLASSIFIER_RAW_SAMPLES_PER_FRAME      3
@@ -135,7 +135,7 @@
 
 #define EI_STUDIO_VERSION_MAJOR             1
 #define EI_STUDIO_VERSION_MINOR             60
-#define EI_STUDIO_VERSION_PATCH             10
+#define EI_STUDIO_VERSION_PATCH             15
 
 #define EI_CLASSIFIER_HR_ENABLED            0
 
