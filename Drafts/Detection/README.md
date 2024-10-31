@@ -17,3 +17,7 @@ We collect dat for each of designated crochet stitch types:
 # Edge Impulse
 
 I use edgeimpulse.com to build my model - it's convinient. I followed all the instructions from their platform. 
+
+# Arduino Libraries Used
+
+* [I2Cdev](https://github.com/jrowberg/i2cdevlib) - download and unzip. Load /Arduino/I2Cdev and /Arduino/MPU6050 as libraries in .zip form.
