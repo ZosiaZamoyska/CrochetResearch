@@ -116,11 +116,6 @@ void loop() {
 
     dtostrf(ypr[2] * 180 / M_PI, 7, 2, buffer);
     Serial.print(buffer);
-    if (startStitch == true)
-    {
-      Serial.print("\tstart\n");
-      startStitch = false;
-    }
     Serial.print("\n");
      
     delay(100);
